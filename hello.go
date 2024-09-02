@@ -83,7 +83,9 @@ func getSitesFromFilte() []string {
 			sites = append(sites, line)
 		}
 	}
-	fmt.Println(sites)
+
+	file.Close()
+
 	return sites
 }
 
