@@ -7,6 +7,9 @@ import (
 	"time"
 )
 
+const monitoring = 3
+const delay = 5
+
 func showIntro() {
 	name := "My"
 	version := 1.0
@@ -31,11 +34,12 @@ func startMonitoring() {
 	fmt.Println("Monitorando...")
 	sites := []string{"https://www.izirh.io", "https://www.alura.com.br", "https://www.google.com"}
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < monitoring; i++ {
 		for _, site := range sites {
 			trySite(site)
 		}
-		time.Sleep(5 * time.Second)
+		fmt.Println("")
+		time.Sleep(delay * time.Second)
 	}
 
 	fmt.Println("")
