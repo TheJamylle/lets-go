@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -32,7 +35,7 @@ func getCommand() int {
 
 func startMonitoring() {
 	fmt.Println("Monitorando...")
-	sites := []string{"https://www.izirh.io", "https://www.alura.com.br", "https://www.google.com"}
+	sites := getSitesFromFilte()
 
 	for i := 0; i < monitoring; i++ {
 		for _, site := range sites {
@@ -46,13 +49,42 @@ func startMonitoring() {
 }
 
 func trySite(site string) {
-	response, _ := http.Get(site)
+	response, err := http.Get(site)
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro:", err)
+	}
 
 	if response.StatusCode == 200 {
 		fmt.Println("Site ", site, "está funcionando corretamente")
 	} else {
 		fmt.Println("Deu problema. Status:", response.StatusCode)
 	}
+}
+
+func getSitesFromFilte() []string {
+	sites := []string{}
+
+	file, err := os.Open("sites.txt")
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro:", err)
+	}
+
+	reader := bufio.NewReader(file)
+
+	for {
+		line, err := reader.ReadString('\n')
+		line = strings.TrimSpace(line)
+
+		if err == io.EOF {
+			break
+		} else {
+			sites = append(sites, line)
+		}
+	}
+	fmt.Println(sites)
+	return sites
 }
 
 func main() {
