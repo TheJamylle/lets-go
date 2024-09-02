@@ -104,6 +104,16 @@ func logStart(site string, status bool) {
 	file.Close()
 }
 
+func getLogs() {
+	file, err := os.ReadFile("logs.txt")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(string(file))
+}
+
 func main() {
 
 	showIntro()
@@ -120,7 +130,7 @@ func main() {
 
 		case 2:
 			fmt.Println("Exibindo logs...")
-
+			getLogs()
 		case 0:
 			fmt.Println("Bye")
 			os.Exit(0)
