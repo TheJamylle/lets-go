@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
 
 func showIntro() {
@@ -30,8 +31,11 @@ func startMonitoring() {
 	fmt.Println("Monitorando...")
 	sites := []string{"https://www.izirh.io", "https://www.alura.com.br", "https://www.google.com"}
 
-	for _, site := range sites {
-		trySite(site)
+	for i := 0; i < 5; i++ {
+		for _, site := range sites {
+			trySite(site)
+		}
+		time.Sleep(5 * time.Second)
 	}
 
 	fmt.Println("")
