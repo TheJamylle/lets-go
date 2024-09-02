@@ -30,17 +30,14 @@ func startMonitoring() {
 	fmt.Println("Monitorando...")
 	sites := []string{"https://www.izirh.io", "https://www.alura.com.br", "https://www.google.com"}
 
-	loop := 0
-	for len(sites) > loop {
+	for loop, site := range sites {
 		response, _ := http.Get(sites[loop])
 
 		if response.StatusCode == 200 {
-			fmt.Println("Site ", sites[loop], "está funcionando corretamente")
+			fmt.Println("Site ", site, "está funcionando corretamente")
 		} else {
 			fmt.Println("Deu problema. Status:", response.StatusCode)
 		}
-
-		loop++
 	}
 
 }
