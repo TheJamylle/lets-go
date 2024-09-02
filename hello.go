@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -57,8 +58,10 @@ func trySite(site string) {
 
 	if response.StatusCode == 200 {
 		fmt.Println("Site ", site, "está funcionando corretamente")
+		logStart(site, true)
 	} else {
 		fmt.Println("Deu problema. Status:", response.StatusCode)
+		logStart(site, false)
 	}
 }
 
@@ -89,9 +92,23 @@ func getSitesFromFilte() []string {
 	return sites
 }
 
+func logStart(site string, status bool) {
+	file, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	file.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + site + " - online: " + strconv.FormatBool(status) + "\n")
+
+	file.Close()
+}
+
 func main() {
 
 	showIntro()
+
+	logStart("Log start", false)
 
 	for {
 		showMenu()

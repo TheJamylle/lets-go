@@ -1,0 +1,10 @@
+02/09/2024 18:21:09 - Log start - online: false
+02/09/2024 18:21:11 - https://www.izirh.io - online: true
+02/09/2024 18:21:12 - https://www.alura.com.br - online: true
+02/09/2024 18:21:12 - https://www.google.com - online: true
+02/09/2024 18:21:17 - https://www.izirh.io - online: true
+02/09/2024 18:21:17 - https://www.alura.com.br - online: true
+02/09/2024 18:21:17 - https://www.google.com - online: true
+02/09/2024 18:21:22 - https://www.izirh.io - online: true
+02/09/2024 18:21:22 - https://www.alura.com.br - online: true
+02/09/2024 18:21:22 - https://www.google.com - online: true
